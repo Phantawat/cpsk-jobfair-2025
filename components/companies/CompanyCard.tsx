@@ -1,0 +1,102 @@
+import React from 'react';
+import type { Company } from '@/types/company';
+import { getCompanyLogoFilename } from '@/lib/companyLogoMap';
+
+interface CompanyCardProps {
+  company: Company;
+  isActive: boolean;
+  tabIndex: number;
+  onClick: () => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
+}
+
+export const CompanyCard = React.memo<CompanyCardProps>(
+  ({ company, isActive, tabIndex, onClick, onKeyDown }) => {
+    // Get initials for logo placeholder
+    const getInitials = (name: string) => {
+      return name
+        .split(' ')
+        .map(word => word[0])
+        .join('')
+        .substring(0, 2)
+        .toUpperCase();
+    };
+
+    const logoFilename = getCompanyLogoFilename(company.name);
+    const logoUrl = company.logo || (logoFilename ? `/logos/${logoFilename}.png` : '');
+
+    return (
+      <div
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        tabIndex={tabIndex}
+        className={`group bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-200 ease-out shadow-md hover:shadow-xl ${
+          isActive
+            ? 'border-ku-pine shadow-lg shadow-ku-pine/20 scale-[1.02]'
+            : 'border-gray-200 hover:border-ku-pine/50 hover:scale-[1.01]'
+        }`}
+        role="button"
+        aria-pressed={isActive}
+      >
+        {/* Company Logo/Icon */}
+        <div className="flex flex-col items-center text-center mb-4">
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-3 overflow-hidden ${
+            isActive ? 'bg-gray-800' : 'bg-gray-800'
+          } transition-colors duration-200`}>
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt={`${company.name} logo`}
+                className="w-full h-full object-contain p-2 bg-white"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  (e.target as HTMLImageElement).style.display = 'none';
+                  const parent = (e.target as HTMLImageElement).parentElement;
+                  if (parent) {
+                    parent.innerHTML = `<span class="font-bold text-xl text-white">${getInitials(company.name)}</span>`;
+                  }
+                }}
+              />
+            ) : (
+              <span className="font-bold text-xl text-white">{getInitials(company.name)}</span>
+            )}
+          </div>
+          <h3 className="text-base font-bold text-gray-800 leading-tight">{company.name}</h3>
+        </div>
+
+        {/* Industry Tags */}
+        <div className="flex flex-wrap gap-1.5 justify-center">
+          {company.businessType.split(',').slice(0, 1).map((industry, i) => (
+            <span
+              key={i}
+              className="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-md border border-gray-200"
+            >
+              {industry.trim().substring(0, 20)}
+            </span>
+          ))}
+          {company.employmentTypes.slice(0, 1).map((type, i) => {
+            let displayType = type;
+            if (type.includes('full-time') || type.includes('เต็มเวลา')) {
+              displayType = 'พนักงานเต็มเวลา';
+            } else if (type.includes('part-time') || type.includes('ไม่เต็มเวลา')) {
+              displayType = 'นิสิตฝึกงาน';
+            } else if (type.includes('intern') || type.includes('ฝึกงาน')) {
+              displayType = 'พนักงานเต็มเวลา';
+            }
+            return (
+              <span
+                key={i}
+                className="px-2.5 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-medium rounded-md"
+              >
+                {displayType}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+);
+
+CompanyCard.displayName = 'CompanyCard';
+

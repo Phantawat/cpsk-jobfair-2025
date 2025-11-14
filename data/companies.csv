@@ -1,0 +1,60 @@
+name,businessType,participationTime,positions,skills,employmentTypes,yearLevels,logo
+บริษัท คอลเลคทีฟ วิสดอม จำกัด,บริการด้านซอฟแวร์ SaaS,13.00-17.00,Front-end web developer; Data scientist; QA,สามารถเขียนโค๊ด อ่านโค๊ดได้คล่อง,พนักงานไม่เต็มเวลา (part-time),4,
+FairPlay Studios,พัฒนาเกมบน PC Ps5 xbox nintendo switch,เวลา 9:30 - 17:00 น. (เต็มวัน),Game Developer ; Technical Artist,ความอยากประกอบอาชีพพัฒนาเกม,พนักงานเต็มเวลา (full-time),4,
+บริษัท ซิลิคอน คราฟท์ เทคโนโลยี จำกัด (มหาชน),เซมิคอนดักเตอร์ ออกแบบและพัฒนาวงจรรวม (Integrated Circuit Design: IC),เวลา 9:30 - 17:00 น. (เต็มวัน),Customer Application Engineer; Embedded System; Software Engineer,มีทักษะในการเขียนภาษาที่หลากหลาย,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+บริษัท อินโนเวทีฟ เอ็กซ์ตรีมิสต์ จำกัด,ให้คำปรึกษาและติดตั้งระบบคอมพิวเตอร์,เวลา 9:30 - 17:00 น. (เต็มวัน),"System Engineer (Infra)
+Network Engineer",,นิสิตฝึกงาน (intern),2,
+Betagro ,เกษตรอุตสาหกรรม,เวลา 9:30 - 17:00 น. (เต็มวัน),Data sci; developer; front and back end; UX UI,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+"T.N. Digital Solutions Co., Ltd.",IT Solution Provider,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Engineer; Business Analyst,"มีความสนใจ Golang
+มีความรู้ความเข้าใจในกระบวนการพัฒนาSoftware",พนักงานเต็มเวลา (full-time),,
+ATA IT Limited,ธุรกิจรับจ้างบริหารระบบเทคโนโลยีสารสนเทศให้กับธนาคาร National Bank of Canada ซึ่งตั้งอยู่ ณ ประเทศแคนาดา ,9:30 - 15:00 น.,Full-stack developer; Quality Assurance Engineer; Business Analyst; ETL Developer,"1. สามารถสื่อสารภาษาอังกฤษได้ดี
+2. ทักษะการเขียนภาษา Java springboot; React; Angular
+3. มีพื้นฐานความเข้าใจการทำงานด้วย Agile Methodology",พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+บริษัท มายออเดอร์ อินเทลลิเจนซ์,"แพลตฟอร์มหลังบ้าน สำหรับร้านค้าออนไลน์, ระบบจัดส่งพัสดุ",เวลา 9:30 - 17:00 น. (เต็มวัน),Full Stack Developer; Software Tester,"Full Stack Developer : มีทักษะในการพัฒนาเว็บด้วย Angular Framework; NodeJs; Typescript; MongoDB มีความรู้พื้นฐาน Docker; Kubernetes; Data Structure; Big O; Functional Programming; OOP สามารถใช้ Git ได้ หรือพอมีความเข้าใจเรื่อง TDD; DDD 
+Software Tester : มีความเข้าใจในการเขียน Test case; Test Scenario; system test; intigration test ออกแบบ Test script สามารถ report Bug ได้ วิเคราะห์หรือมองสิ่งที่ทำให้เกิดปัญหาได้ และสามารถทดสอบวิธีที่ทำให้เจอปัญหาได้",พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+"Freewill Solutions Co., Ltd.",Software House,เวลา 9:30 - 17:00 น. (เต็มวัน),Full-Stack  Developer; Software implementer & SA; Flutter Mobile Developer,Java; JavaScript; Flutter; SQL,พนักงานเต็มเวลา (full-time); พนักงานไม่เต็มเวลา (part-time); นิสิตฝึกงาน (intern),2,
+TCC Technology Group ,Technology/ Solution Development/ Data Center ,เวลา 9:30 - 17:00 น. (เต็มวัน),Front-end; Back-end; Full stack; Data Eng; Data science,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+บริษัท อีเอสพี เอเซียน เซ็นเตอร์ จำกัด,ออกแบบ ปรับแต่งแพลตฟอร์ม 3D EXPERIENCE ,เวลา 9:30 - 17:00 น. (เต็มวัน),System Engineer; Software Engineer,สามารถใช้ภาษาอังกฤษได้ดี; มีทักษะในการเขียนภาษา Java; C++; OOP,พนักงานเต็มเวลา (full-time),,
+"ABACUS  digital Co., Ltd.",บริษัทฟินเทคผู้พัฒนาแอปพลิเคชันสินเชื่อมันนี่ทันเดอร์ ,เวลา 9:30 - 17:00 น. (เต็มวัน),"Data Analyst
+- Data Scientist
+- Data Engineer
+- Software Engineer
+- QA Engineer
+- UX Researcher
+- Content Creator
+- Business Development Analyst
+- Financial Strategist",Java; Go; JavaScript,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),2,
+บริษัท ทรูเวฟ (ประเทศไทย) จำกัด,พัฒนาแพลตฟอร์มแอพพลิเคชั่นและเป็นตัวแทนจำหน่ายผลิตภัณฑ์ IT (Hardware&Software),เวลา 9:30 - 17:00 น. (เต็มวัน),Frontend/Backend Developer; Business Analyst; Machine Learning; System/Cloud Engineer; DevOps Engineer,,พนักงานเต็มเวลา (full-time),3,
+บริษัท เมอร์ซิล โซลูชั่นส์ จำกัด,บริการออกแบบและพัฒนาเว็บไซต์ แอพพลิเคชั่น,เวลา 9:30 - 17:00 น. (เต็มวัน),Full Stack Developer; UX/UI Designer; project manager,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+บริษัท เพลย์ทอเรียม โซลูชันส์ จำกัด (มหาชน),ธุรกิจให้บริการด้านที่ปรึกษา ออกแบบและพัฒนาระบบเทคโนโลยีสารสนเทศ,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Developer; Software Tester; Business Analyst / System Analyst; Business Development,"Experienced in software development language such as 
+Web: NextJS; React; Vue.js; Angular
+Mobile: Flutter; Swift; Kotlin
+Back-End: NestJS; .NET Core; Go; Java Spring Boost; Python; PHP
+Database: PostgreSQL; MySQL; MongoDB; MS SQL; Oracle",พนักงานเต็มเวลา (full-time); พนักงานไม่เต็มเวลา (part-time); พนักงานอาชีพอิสระ (freelancer); นิสิตฝึกงาน (intern),1,
+บ. ลินเซ่นส์ (ประเทศไทย) จำกัด,"อิเล็กทรอนิกส์การ์ด, RFID Tag, Passport ",เวลา 9:30 - 17:00 น. (เต็มวัน),Software Developer; IT engineering,C#; Java,พนักงานเต็มเวลา (full-time),4,
+บริษัท เก็ต ออน เทคโนโลยี จำกัด ,ขายสินค้าและบริการด้าน IT,เวลา 9:30 - 17:00 น. (เต็มวัน),DevOps Engineer; Cloud Engineer; Network Engineer; System Engineer; Agentic AI Developer,มีความรู้พื้นฐานด้าน Database; Programming; Network; Security; AI; มีทักษะในการเขียนภาษา Java; Go; JavaScript,นิสิตฝึกงาน (intern),3,
+SkillLane Technology Public Company Limited,Education Technology,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Engineer,React.js; Nest.js Typescript,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+บริษัท ลูลู่ เทคโนโลยี จำกัด,ให้คำปรึกษาทางด้านซอฟต์แวร์,เวลา 9:30 - 17:00 น. (เต็มวัน),"Software Engineer (Full time / Intern)
+Machine Learning Engineer (Full time / Intern)
+ฺBusiness Document Writer
+Business Development Associate
+Business Development Intern
+Accouting Intern",สอบผ่านแบบทดสอบของทางบริษัท (Programming Test : Python; Java; JavaScript),พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),1,
+บมจ.ซีพีเอฟ (ประเทศไทย),เกษตรอุตสาหกรรมและธุรกิจอาหาร,09.30 - 16.00,Data Scientist; Data Engineer; Software Developer; QA Engineer; SAP Functional Consultant; SAP Developer; Future Leader Program,ABAP Language; SAP-UI5; SAP FICO Implementation,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+ควอนเทียม เทคโนโลยี,ให้คำปรึกษาทางด้านซอฟต์แวร์,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Developer; DevOps,สื่อสารภาษาอังกฤษได้; มีทักษะ C# หรือ TypeScript จะพิจารณาเป็นพิเศษ,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+"1Moby Co.,Ltd",Software House,เวลา 9:30 - 17:00 น. (เต็มวัน),Fullstack Developer; QA Tester,,พนักงานเต็มเวลา (full-time),4,
+บริษัท ยานนิกซ์ จำกัด,ให้บริการด้าน visual effect ให้กับภาพยนตร์ Hollywood,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Developer; 3d motion tracking,มี logic; basic programing,พนักงานเต็มเวลา (full-time); พนักงานไม่เต็มเวลา (part-time); นิสิตฝึกงาน (intern),3,
+บริษัท ไอโคเน็กซ์ จำกัด,บริษัท software house องค์กร | พัฒนาซอฟท์แวร์,09:00 - 16:00 น.,Junior Software Developer,Java; C# .Net,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+"C.J. Express Group Co., Ltd",ค้าปลีก,9:30 - 15:00 น.,Software Engineer; Test Engineer; Data Engineer; Cybersecurity Engineer,Goland; React; JavaScript; TypeScript; API; MongoDB; Python,พนักงานเต็มเวลา (full-time),4,
+The Red Carbon,Data-driven Marketing Consultant,เวลา 9:30 - 17:00 น. (เต็มวัน),Data Scientist; Data Analyst; Data Engineer; Software dev,,พนักงานเต็มเวลา (full-time); พนักงานไม่เต็มเวลา (part-time); พนักงานอาชีพอิสระ (freelancer); นิสิตฝึกงาน (intern),2,
+บริษัท อักษรเจริญทัศน์ อจท. จำกัด,"นวัตกรรมด้านการศึกษา พัฒนาสื่อการเรียนการสอนครบวงจร ทั้งในรูปแบบหนังสือเรียน และสื่อดิจิทัล เช่น e-book, วิดีโอ, แอนิเมชัน 3 มิติ และแพลตฟอร์มการเรียนรู้ออนไลน์",เวลา 9:30 - 17:00 น. (เต็มวัน),Sr. System Analyst; Sr. Frontend Developer (Web React); Sr. iOS Developer (Switf); Product Owner; Software Developer,React.js; JavaScript; TypeScript; GreenSock; Animation; Platform (GSAP); Next.js; Golang,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+Sunday Ins.,"Technology Development (Platform, web, application)",เวลา 9:30 - 17:00 น. (เต็มวัน),Position : Software Engineer [Full-stack],-JavaScript; TypeScript,นิสิตฝึกงาน (intern),4,
+บริษัท เอ็ม เอฟ อี ซี จำกัด(มหาชน),"System Integrator ให้บริการทางด้านไอทีโซลูชั่น : Security , Data , Cloud , Hybrid Infra , AI , ESG",เวลา 9:30 - 17:00 น. (เต็มวัน),Full-Stack; Developer; Data and AI apply engineer; IoT; Software Engineer,Low-code; Java; C; Python,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),2,
+SCB TechX,Tech Company,เวลา 9:30 - 17:00 น. (เต็มวัน),Back-end Dev; Site Reliability Engineer,Java; Golang,พนักงานเต็มเวลา (full-time),1,
+ บริษัท ไอทีวัน จำกัด,Technology Consulting ,เวลา 9:30 - 17:00 น. (เต็มวัน),SAP Consultant; SAP Support; Business Analyst; Software Developer; Internship,Java; Angular; .NET; Good command of English is preferred,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+ธนาคารกรุงเทพ จำกัด (มหาชน),สถาบันการเงิน,เวลา 9:30 - 17:00 น. (เต็มวัน),Programmer/Software Engineer/Integration Developer; Data (Engineer / Analyst / Scientist); IT Support; Cyber Security; IT Audit; Business Analyst; System Engineer,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+KASIKORN Business-Technology Group [KBTG],พัฒนา software เครือธนาคารกสิกร ,เวลา 9:30 - 17:00 น. (เต็มวัน),Front-end web developer; Mobile app developer; Data scientist,ภาษาอังกฤษมีบ้าง; ทักษะการเขียนภาษา เฉพาะบางตำแหน่งที่จะต้องใช้ ควรจะมีสกิลบ้างนิดหน่อย,นิสิตฝึกงาน (intern),3,
+บริษัท โมทีฟ เทคโนโลยี จำกัด (มหาชน) ,ที่ปรึกษาและออกแบบระบบเครือข่ายและพัฒนาโปรแกรมคอมพิวเตอร์,เวลา 9:30 - 17:00 น. (เต็มวัน),Software Engineer ;Mobile app developer ;System Analyst ; System Engineer,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+"Codefin Co., Ltd.",บริการรับทำแอพพลิเคชั่นด้านการเงิน การลงทุน ออกแบบแอพลิเคชั่น,9.00-15.00,Software Engineer (Golang); Mobile Developer (Flutter); Business,Golang (Gin; echo. fiber; ...); react native; flutter มี Macbook เป็นของตนเอง (สำหรับฝึกงาน),พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),3,
+"Nextwave (Thailand) Co., Ltd.",Distributor Cybersecurity,เวลา 9:30 - 17:00 น. (เต็มวัน),Cybersecurity Engineer,สามารถสื่อสารภาษาอังกฤษได้อย่างคล่องแคล่ว และมีความรู้พื้นฐานด้าน Network,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
+บริษัท สามารถเทลคอม จำกัด (มหาชน),"กลุ่มธุรกิจ ICT (Information and Communication Technology) โดยมีลักษณะงานหลักครอบคลุมทั้ง ด้านระบบสื่อสาร, ระบบโครงสร้างพื้นฐาน, ระบบเทคโนโลยีสารสนเทศ และบริการหลังการขายแบบครบวงจร",เวลา 9:30 - 17:00 น. (เต็มวัน),Programmer; Cyber Security Responder; SAP Consultant,,พนักงานเต็มเวลา (full-time); นิสิตฝึกงาน (intern),4,
