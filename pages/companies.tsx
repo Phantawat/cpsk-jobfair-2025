@@ -17,7 +17,6 @@ interface CompaniesPageProps {
 
 interface FilterState {
   searchQuery: string;
-  selectedBusinessTypes: string[];
   positionsFilter: string;
   selectedEmploymentTypes: string[];
   selectedYearLevels: number[];
@@ -45,15 +44,6 @@ function filterCompanies(companies: Company[], filters: FilterState): Company[] 
     // Search filter - check searchText field
     if (filters.searchQuery && !company.searchText.includes(filters.searchQuery.toLowerCase())) {
       return false;
-    }
-
-    // Business type filter (OR within business types)
-    if (filters.selectedBusinessTypes.length > 0) {
-      if (!filters.selectedBusinessTypes.some((type) =>
-        company.businessType.toLowerCase().includes(type.toLowerCase())
-      )) {
-        return false;
-      }
     }
 
     // Positions filter
@@ -128,7 +118,6 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
   // State management
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
-    selectedBusinessTypes: [],
     positionsFilter: '',
     selectedEmploymentTypes: [],
     selectedYearLevels: [],
@@ -140,15 +129,6 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
 
   // Debounce search
   const debouncedSearchQuery = useDebouncedValue(filters.searchQuery, 200);
-
-  // Extract unique values for filters
-  const uniqueBusinessTypes = useMemo(() => {
-    const types = new Set<string>();
-    companies.forEach((company) => {
-      types.add(company.businessType);
-    });
-    return Array.from(types).sort();
-  }, [companies]);
 
   const uniqueEmploymentTypes = useMemo(
     () => extractUniqueValues<string>(companies, 'employmentTypes'),
@@ -178,14 +158,7 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
     setFilters((prev) => ({ ...prev, searchQuery: query }));
   }, []);
 
-  const handleBusinessTypeChange = useCallback((type: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      selectedBusinessTypes: prev.selectedBusinessTypes.includes(type)
-        ? prev.selectedBusinessTypes.filter((t) => t !== type)
-        : [...prev.selectedBusinessTypes, type],
-    }));
-  }, []);
+
 
   const handlePositionsFilterChange = useCallback((filter: string) => {
     setFilters((prev) => ({ ...prev, positionsFilter: filter }));
@@ -216,7 +189,6 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
   const handleClearFilters = useCallback(() => {
     setFilters({
       searchQuery: '',
-      selectedBusinessTypes: [],
       positionsFilter: '',
       selectedEmploymentTypes: [],
       selectedYearLevels: [],
@@ -343,26 +315,6 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
 
             {/* Inline Filters */}
             <div className="flex flex-wrap items-center gap-4 justify-center">
-              {/* Business Type Filter */}
-              <div className="relative">
-                <select
-                  className="appearance-none bg-white border-2 border-gray-200 text-gray-700 text-sm rounded-lg pl-10 pr-10 py-2.5 hover:border-ku-pine focus:outline-none focus:ring-2 focus:ring-ku-pine focus:border-ku-pine cursor-pointer min-w-[180px] shadow-sm"
-                  value=""
-                  onChange={(e) => e.target.value && handleBusinessTypeChange(e.target.value)}
-                >
-                  <option value="">Business Type</option>
-                  {uniqueBusinessTypes.map((type) => (
-                    <option key={type} value={type}>{type.substring(0, 30)}</option>
-                  ))}
-                </select>
-                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-ku-pine pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-
               {/* Positions Filter */}
               <div className="relative">
                 <input
@@ -440,18 +392,8 @@ export default function CompaniesPage({ companies }: CompaniesPageProps) {
             </div>
 
             {/* Active Filters Display */}
-            {(filters.selectedBusinessTypes.length > 0 || filters.selectedEmploymentTypes.length > 0 || filters.selectedYearLevels.length > 0) && (
+            {(filters.selectedEmploymentTypes.length > 0 || filters.selectedYearLevels.length > 0) && (
               <div className="mt-6 flex flex-wrap items-center gap-2 justify-center">
-                {filters.selectedBusinessTypes.map((type) => (
-                  <span key={type} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-ku-pine text-white text-xs rounded-lg shadow-sm">
-                    {type.substring(0, 20)}
-                    <button onClick={() => handleBusinessTypeChange(type)} className="hover:text-ku-fresh transition-colors">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </span>
-                ))}
                 {filters.selectedEmploymentTypes.map((type) => (
                   <span key={type} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-ku-pine text-white text-xs rounded-lg shadow-sm">
                     {type}

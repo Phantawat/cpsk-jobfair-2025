@@ -3,14 +3,11 @@ import type { SortOption } from '@/types/company';
 
 interface FiltersPanelProps {
   searchQuery: string;
-  selectedBusinessTypes: string[];
   positionsFilter: string;
   selectedEmploymentTypes: string[];
   selectedYearLevels: number[];
   sortOption: SortOption;
-  uniqueBusinessTypes: string[];
   onSearchChange: (query: string) => void;
-  onBusinessTypeChange: (type: string) => void;
   onPositionsFilterChange: (filter: string) => void;
   onEmploymentTypeChange: (type: string) => void;
   onYearLevelChange: (year: number) => void;
@@ -21,14 +18,11 @@ interface FiltersPanelProps {
 export const FiltersPanel = React.memo<FiltersPanelProps>(
   ({
     searchQuery,
-    selectedBusinessTypes,
     positionsFilter,
     selectedEmploymentTypes,
     selectedYearLevels,
     sortOption,
-    uniqueBusinessTypes,
     onSearchChange,
-    onBusinessTypeChange,
     onPositionsFilterChange,
     onEmploymentTypeChange,
     onYearLevelChange,
@@ -37,7 +31,6 @@ export const FiltersPanel = React.memo<FiltersPanelProps>(
   }) => {
     // Accordion state management
     const [openSections, setOpenSections] = useState({
-      businessType: true,
       positions: false,
       employment: false,
       yearLevel: false,
@@ -91,60 +84,6 @@ export const FiltersPanel = React.memo<FiltersPanelProps>(
                 </button>
               )}
             </div>
-          </div>
-
-          {/* Business Type Filter */}
-          <div className="mb-4 border-b border-gray-100 pb-4">
-            <button
-              onClick={() => toggleSection('businessType')}
-              className="w-full flex items-center justify-between text-left py-2 group"
-              aria-expanded={openSections.businessType}
-            >
-              <h3 className="text-sm font-semibold text-gray-900">Business Type</h3>
-              <svg
-                className={`w-5 h-5 text-gray-400 transition-transform duration-200 group-hover:text-gray-600 ${
-                  openSections.businessType ? 'rotate-180' : ''
-                }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            {openSections.businessType && (
-              <div className="mt-3 animate-in fade-in duration-200">
-                <select
-                  id="businessType"
-                  onChange={(e) => e.target.value && onBusinessTypeChange(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300 transition-shadow text-sm text-gray-900 bg-white"
-                  value=""
-                >
-                  <option value="">Select Business Type...</option>
-                  {uniqueBusinessTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                {selectedBusinessTypes.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {selectedBusinessTypes.map((type) => (
-                      <button
-                        key={type}
-                        onClick={() => onBusinessTypeChange(type)}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-ku-pine text-white rounded-lg text-xs font-medium hover:bg-ku-pine-dark transition-colors"
-                      >
-                        {type.substring(0, 30)}
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
           </div>
 
           {/* Positions Filter */}
