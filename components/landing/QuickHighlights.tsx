@@ -1,23 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Company } from '@/types/company';
+import { getCompanyLogoFilename } from '@/lib/companyLogoMap';
 
-interface QuickHighlightsProps {
-  companies: Company[];
-}
+export default function QuickHighlights({ companies }: { companies: Company[] }) {
+  const [featuredCompanies, setFeaturedCompanies] = useState<Company[]>([]);
 
-export const QuickHighlights: React.FC<QuickHighlightsProps> = ({ companies }) => {
-  // Calculate top business types
-  const topBusinessTypes = React.useMemo(() => {
-    const businessTypeCounts = companies.reduce((acc, company) => {
-      const type = company.businessType;
-      acc[type] = (acc[type] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-
-    return Object.entries(businessTypeCounts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 5)
-      .map(([type, count]) => ({ type, count }));
+  // Get random featured companies only on client side
+  useEffect(() => {
+    const shuffled = [...companies].sort(() => Math.random() - 0.5);
+    setFeaturedCompanies(shuffled.slice(0, 6));
   }, [companies]);
 
   // Calculate top positions
@@ -35,6 +26,11 @@ export const QuickHighlights: React.FC<QuickHighlightsProps> = ({ companies }) =
       .map(([position, count]) => ({ position, count }));
   }, [companies]);
 
+  // Don't render carousel until client is hydrated
+  if (featuredCompanies.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 sm:py-20 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,39 +46,85 @@ export const QuickHighlights: React.FC<QuickHighlightsProps> = ({ companies }) =
 
         {/* Two-column layout */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Top Business Types */}
+          {/* Featured Companies Carousel */}
           <div className="space-y-4">
             <h3 className="text-2xl sm:text-3xl font-bold text-ku-pine mb-6 flex items-center gap-3">
               <svg className="w-7 h-7 text-ku-fresh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
               </svg>
-              Top Industries
+              Featured Companies
             </h3>
-            <div className="space-y-3">
-              {topBusinessTypes.map((item, index) => (
-                <div
-                  key={item.type}
-                  className="group flex items-center justify-between p-4 bg-gray-50 hover:bg-ku-pine/5 rounded-xl border-2 border-transparent hover:border-ku-fresh transition-all duration-300 transform hover:translate-x-2"
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                  }}
-                >
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="flex-shrink-0 w-8 h-8 bg-ku-pine/10 group-hover:bg-ku-fresh/20 rounded-full flex items-center justify-center text-ku-pine group-hover:text-ku-fresh font-bold text-sm transition-colors duration-300">
-                      {index + 1}
-                    </div>
-                    <span className="text-base sm:text-lg font-medium text-gray-800 group-hover:text-ku-pine transition-colors duration-300">
-                      {item.type}
-                    </span>
-                  </div>
-                  <div className="flex-shrink-0 ml-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-ku-fresh/20 text-ku-pine group-hover:bg-ku-fresh group-hover:text-white transition-all duration-300">
-                      {item.count} {item.count === 1 ? 'company' : 'companies'}
-                    </span>
-                  </div>
-                </div>
-              ))}
+            
+            {/* Scrolling carousel */}
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-ku-pine/10 to-ku-fresh/10 p-6 border-2 border-ku-fresh/20">
+              <div className="flex gap-8 animate-scroll">
+                {/* Duplicate the array for seamless loop */}
+                {[...featuredCompanies, ...featuredCompanies].map((company, index) => {
+                  const logoFilename = getCompanyLogoFilename(company.name);
+                  return (
+                    <a
+                      key={`${company.name}-${index}`}
+                      href="/companies"
+                      className="group flex-shrink-0 w-32 text-center hover:scale-110 transition-transform duration-300"
+                    >
+                      {/* Company Logo Circle */}
+                      <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-ku-pine to-ku-fresh flex items-center justify-center mb-3 shadow-lg group-hover:shadow-xl transition-shadow overflow-hidden">
+                        {logoFilename ? (
+                          <img
+                            src={`/logos/${logoFilename}.png`}
+                            alt={company.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              // Fallback to initials if logo fails to load
+                              e.currentTarget.style.display = 'none';
+                              const parent = e.currentTarget.parentElement;
+                              if (parent) {
+                                const fallback = document.createElement('span');
+                                fallback.textContent = company.name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
+                                fallback.className = 'text-white text-lg font-bold';
+                                parent.appendChild(fallback);
+                              }
+                            }}
+                          />
+                        ) : (
+                          <span className="text-white text-lg font-bold">
+                            {company.name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Position Count */}
+                      <div className="text-sm font-semibold text-ku-pine group-hover:text-ku-fresh transition-colors">
+                        {company.positions.length} position{company.positions.length !== 1 ? 's' : ''}
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+              
+              {/* Gradient fade on edges */}
+              <div className="absolute top-0 left-0 bottom-0 w-20 bg-gradient-to-r from-ku-pine/10 to-transparent pointer-events-none"></div>
+              <div className="absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-ku-fresh/10 to-transparent pointer-events-none"></div>
             </div>
+            
+            <style jsx>{`
+              @keyframes scroll {
+                0% {
+                  transform: translateX(0);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              
+              .animate-scroll {
+                animation: scroll 15s linear infinite;
+              }
+              
+              .animate-scroll:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
           </div>
 
           {/* Top Positions */}

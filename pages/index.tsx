@@ -8,7 +8,7 @@ import { Company } from '@/types/company';
 import { parseCompaniesCsv } from '@/lib/parseCsv';
 import { Hero } from '@/components/landing/Hero';
 import { StatsSection } from '@/components/landing/StatsSection';
-import { QuickHighlights } from '@/components/landing/QuickHighlights';
+import QuickHighlights from '@/components/landing/QuickHighlights';
 import { Footer } from '@/components/layout/Footer';
 
 interface HomePageProps {

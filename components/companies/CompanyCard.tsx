@@ -64,24 +64,18 @@ export const CompanyCard = React.memo<CompanyCardProps>(
           <h3 className="text-base font-bold text-gray-800 leading-tight">{company.name}</h3>
         </div>
 
-        {/* Industry Tags */}
+        {/* Tags */}
         <div className="flex flex-wrap gap-1.5 justify-center">
-          {company.businessType.split(',').slice(0, 1).map((industry, i) => (
-            <span
-              key={i}
-              className="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-md border border-gray-200"
-            >
-              {industry.trim().substring(0, 20)}
-            </span>
-          ))}
-          {company.employmentTypes.slice(0, 1).map((type, i) => {
+          {company.employmentTypes.slice(0, 2).map((type, i) => {
             let displayType = type;
             if (type.includes('full-time') || type.includes('เต็มเวลา')) {
-              displayType = 'พนักงานเต็มเวลา';
+              displayType = 'Full-time';
             } else if (type.includes('part-time') || type.includes('ไม่เต็มเวลา')) {
-              displayType = 'นิสิตฝึกงาน';
+              displayType = 'Part-time';
             } else if (type.includes('intern') || type.includes('ฝึกงาน')) {
-              displayType = 'พนักงานเต็มเวลา';
+              displayType = 'Internship';
+            } else if (type.includes('freelancer') || type.includes('อาชีพอิสระ')) {
+              displayType = 'Freelance';
             }
             return (
               <span

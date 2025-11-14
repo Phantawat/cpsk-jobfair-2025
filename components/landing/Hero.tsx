@@ -11,10 +11,10 @@ export const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* KU Logo */}
+        {/* CPSK Logo */}
         <div className="mb-8 animate-fade-in">
-          <div className="inline-flex items-center justify-center w-32 h-32 bg-white/10 backdrop-blur-sm rounded-full border-4 border-white/30">
-            <span className="text-5xl font-bold text-white">KU</span>
+          <div className="inline-flex items-center justify-center w-40 h-40 rounded-full overflow-hidden bg-white shadow-2xl">
+            <img src="/logos/CPSK-logo.png" alt="CPSK Club" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
 
         {/* Subtitle */}
         <p className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-in-delay-200">
-          Connect with Leading Tech Companies and Launch Your Career
+          New opportunities are waiting for you
         </p>
 
         {/* Event Details */}
@@ -71,7 +71,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 animate-bounce mt-8">
           <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>

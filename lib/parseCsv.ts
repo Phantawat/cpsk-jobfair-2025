@@ -89,8 +89,7 @@ export function splitAndNormalize(value: string | undefined): string[] {
 
 /**
  * Helper: Parse year levels from text
- * Handles formats like: "3", "3,4", "3+", "year 3 and 4", etc.
- * Always returns a complete range (e.g., if "3+" returns [3,4])
+ * Handles formats like: "2; 3; 4", "Year 2; Year 3; Year 4", "2,3,4", etc.
  */
 export function parseYearLevels(value: string | undefined): number[] {
   if (!value || typeof value !== 'string') return [];
@@ -106,24 +105,7 @@ export function parseYearLevels(value: string | undefined): number[] {
     }
   });
 
-  // If value contains "+" or "ขึ้นไป", add remaining years
-  if ((value.includes('+') || value.includes('ขึ้นไป')) && years.size > 0) {
-    const minYear = Math.min(...Array.from(years));
-    for (let i = minYear; i <= 4; i++) {
-      years.add(i);
-    }
-  }
-
-  // If multiple years are present, fill in the range
-  if (years.size > 1) {
-    const minYear = Math.min(...Array.from(years));
-    const maxYear = Math.max(...Array.from(years));
-    for (let i = minYear; i <= maxYear; i++) {
-      years.add(i);
-    }
-  }
-
-  // Return sorted unique array
+  // Return sorted unique array (don't fill in ranges)
   return Array.from(years).sort((a, b) => a - b);
 }
 

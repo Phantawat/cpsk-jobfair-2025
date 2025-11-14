@@ -143,6 +143,17 @@ export const CompanyModal = React.memo<CompanyModalProps>(({ company, onClose })
 
         {/* Content */}
         <div className="px-6 py-4 space-y-4">
+          {/* Business Type */}
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+              <svg className="w-4 h-4 text-ku-pine" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5.581m0 0H9m11.581 0a2 2 0 100-4H9m11.581 4a2 2 0 100-4H9m0 16V9m0 0a2 2 0 10-4 0m4 0a2 2 0 11-4 0m15-6h-2m0 0h-2m2 0a2 2 0 100-4m0 4a2 2 0 11-4 0m4 0V5m-4 4H7" />
+              </svg>
+              Business Type
+            </h3>
+            <p className="text-sm text-gray-700">{company.businessType}</p>
+          </div>
+
           {/* Participation Time */}
           <div className="flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
             <svg className="w-4 h-4 text-ku-pine flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,21 +225,20 @@ export const CompanyModal = React.memo<CompanyModalProps>(({ company, onClose })
                 Employment Type
               </h3>
               <div className="flex flex-wrap gap-2">
-                {company.employmentTypes.map((type, i) => {
-                  let displayType = type;
+                {Array.from(new Set(company.employmentTypes.map((type) => {
                   if (type.includes('full-time') || type.includes('เต็มเวลา')) {
-                    displayType = 'Full-time';
+                    return 'Full-time';
                   } else if (type.includes('part-time') || type.includes('ไม่เต็มเวลา')) {
-                    displayType = 'Part-time';
+                    return 'Part-time';
                   } else if (type.includes('intern') || type.includes('ฝึกงาน')) {
-                    displayType = 'Internship';
+                    return 'Internship';
                   }
-                  return (
-                    <span key={i} className="px-3 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-medium rounded-md">
-                      {displayType}
-                    </span>
-                  );
-                })}
+                  return type;
+                }))).map((displayType, i) => (
+                  <span key={i} className="px-3 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-medium rounded-md">
+                    {displayType}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -240,17 +250,13 @@ export const CompanyModal = React.memo<CompanyModalProps>(({ company, onClose })
                 Recruiting Year Levels
               </h3>
               <div className="flex flex-wrap gap-2">
-                {company.yearLevels.length > 0 && (
-                  company.yearLevels.length === 1 ? (
-                    <span className="px-3 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-semibold rounded-md">
-                      Year {company.yearLevels[0]}
-                    </span>
-                  ) : (
-                    <span className="px-3 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-semibold rounded-md">
-                      Year {Math.min(...company.yearLevels)} - {Math.max(...company.yearLevels)}
-                    </span>
-                  )
-                )}
+                {company.yearLevels.length > 0
+                  ? company.yearLevels.map((year) => (
+                      <span key={year} className="px-3 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-semibold rounded-md">
+                        Year {year}
+                      </span>
+                    ))
+                  : <span className="text-xs text-gray-500">Not specified</span>}
               </div>
             </div>
           </div>
