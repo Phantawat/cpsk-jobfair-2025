@@ -8,10 +8,11 @@ interface CompanyCardProps {
   tabIndex: number;
   onClick: () => void;
   onKeyDown?: (e: React.KeyboardEvent) => void;
+  staggerIndex?: number;
 }
 
 export const CompanyCard = React.memo<CompanyCardProps>(
-  ({ company, isActive, tabIndex, onClick, onKeyDown }) => {
+  ({ company, isActive, tabIndex, onClick, onKeyDown, staggerIndex = 0 }) => {
     // Get initials for logo placeholder
     const getInitials = (name: string) => {
       return name
@@ -30,19 +31,20 @@ export const CompanyCard = React.memo<CompanyCardProps>(
         onClick={onClick}
         onKeyDown={onKeyDown}
         tabIndex={tabIndex}
-        className={`group bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-200 ease-out shadow-md hover:shadow-xl ${
+        style={{ animationDelay: `${staggerIndex * 0.1}s` }}
+        className={`group bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-300 ease-out shadow-md hover:shadow-2xl animate-scaleIn ${
           isActive
-            ? 'border-ku-pine shadow-lg shadow-ku-pine/20 scale-[1.02]'
-            : 'border-gray-200 hover:border-ku-pine/50 hover:scale-[1.01]'
+            ? 'border-ku-pine shadow-lg shadow-ku-pine/30 scale-[1.02]'
+            : 'border-gray-200 hover:border-ku-pine/50 hover-lift'
         }`}
         role="button"
         aria-pressed={isActive}
       >
         {/* Company Logo/Icon */}
         <div className="flex flex-col items-center text-center mb-4">
-          <div className={`w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-3 overflow-hidden ${
-            isActive ? 'bg-gray-800' : 'bg-gray-800'
-          } transition-colors duration-200`}>
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-3 overflow-hidden bg-gray-800 transition-all duration-300 group-hover:shadow-md group-hover:shadow-ku-fresh/30 ${
+            isActive ? 'ring-2 ring-ku-fresh' : ''
+          }`}>
             {logoUrl ? (
               <img 
                 src={logoUrl} 
@@ -61,10 +63,10 @@ export const CompanyCard = React.memo<CompanyCardProps>(
               <span className="font-bold text-xl text-white">{getInitials(company.name)}</span>
             )}
           </div>
-          <h3 className="text-base font-bold text-gray-800 leading-tight">{company.name}</h3>
+          <h3 className="text-base font-bold text-gray-800 leading-tight group-hover:text-ku-pine transition-colors duration-200">{company.name}</h3>
         </div>
 
-        {/* Tags */}
+        {/* Tags with improved styling */}
         <div className="flex flex-wrap gap-1.5 justify-center">
           {company.employmentTypes.slice(0, 2).map((type, i) => {
             let displayType = type;
@@ -80,7 +82,7 @@ export const CompanyCard = React.memo<CompanyCardProps>(
             return (
               <span
                 key={i}
-                className="px-2.5 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-medium rounded-md"
+                className="px-2.5 py-1 bg-ku-fresh text-ku-pine-dark text-xs font-medium rounded-full transition-all duration-200 group-hover:bg-ku-fresh-dark group-hover:scale-105"
               >
                 {displayType}
               </span>

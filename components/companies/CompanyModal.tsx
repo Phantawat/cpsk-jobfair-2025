@@ -80,13 +80,13 @@ export const CompanyModal = React.memo<CompanyModalProps>(({ company, onClose })
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-6 z-50 animate-fade-in"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-6 z-50 animate-fadeIn"
       onClick={onClose}
       role="presentation"
     >
       <div
         ref={modalRef}
-        className="bg-white rounded-t-2xl md:rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slide-up"
+        className="bg-white rounded-t-2xl md:rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slideDown md:animate-fadeInUp"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"

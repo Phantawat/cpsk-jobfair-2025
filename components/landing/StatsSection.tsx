@@ -82,7 +82,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ companies }) => {
     <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ku-pine mb-4">
             Event at a Glance
           </h2>
@@ -141,12 +141,9 @@ const StatCard: React.FC<StatCardProps> = ({ stat, index, hasAnimated }) => {
 
   return (
     <div
-      className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6 sm:p-8 border-2 border-transparent hover:border-ku-fresh"
+      className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 border-2 border-transparent hover:border-ku-fresh animate-slideDown hover-lift focus-shadow"
       style={{
-        animationDelay: `${index * 100}ms`,
-        opacity: hasAnimated ? 1 : 0,
-        transform: hasAnimated ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+        animationDelay: `${0.1 + index * 0.08}s`,
       }}
     >
       {/* Icon */}
@@ -156,10 +153,12 @@ const StatCard: React.FC<StatCardProps> = ({ stat, index, hasAnimated }) => {
         </div>
       </div>
 
-      {/* Value */}
-      <div className="text-4xl sm:text-5xl font-bold text-ku-pine text-center mb-2 group-hover:text-ku-fresh transition-colors duration-300">
-        {count}
-        {stat.suffix}
+      {/* Value with pulse animation */}
+      <div className="text-4xl sm:text-5xl font-bold text-ku-pine text-center mb-2 group-hover:text-ku-fresh transition-colors duration-300 inline-block w-full">
+        <span className="group-hover:animate-pulseSlow">
+          {count}
+          {stat.suffix}
+        </span>
       </div>
 
       {/* Label */}
@@ -167,8 +166,8 @@ const StatCard: React.FC<StatCardProps> = ({ stat, index, hasAnimated }) => {
         {stat.label}
       </div>
 
-      {/* Decorative corner accent */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-ku-fresh/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      {/* Decorative corner accent with better animation */}
+      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-ku-fresh/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-0 group-hover:scale-100 origin-top-right"></div>
     </div>
   );
 };

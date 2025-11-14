@@ -58,6 +58,7 @@ export const CompanyList = React.memo<CompanyListProps>(
                 tabIndex={index === activeIndex ? 0 : -1}
                 onClick={() => onSelectCompany(company, index)}
                 onKeyDown={(e) => handleCardKeyDown(e, index)}
+                staggerIndex={index % 4}
               />
             </div>
           ))}
