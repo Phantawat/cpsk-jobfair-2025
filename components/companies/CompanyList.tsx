@@ -1,6 +1,6 @@
-import React, { useCallback, useRef, useEffect } from 'react';
-import type { Company } from '@/types/company';
-import { CompanyCard } from './CompanyCard';
+import React, { useCallback, useRef, useEffect } from "react";
+import type { Company } from "@/types/company";
+import { CompanyCard } from "./CompanyCard";
 
 interface CompanyListProps {
   companies: Company[];
@@ -17,8 +17,8 @@ export const CompanyList = React.memo<CompanyListProps>(
     useEffect(() => {
       if (itemRefs.current[activeIndex]) {
         itemRefs.current[activeIndex]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
+          behavior: "smooth",
+          block: "nearest",
         });
       }
     }, [activeIndex]);
@@ -26,7 +26,7 @@ export const CompanyList = React.memo<CompanyListProps>(
     const handleCardKeyDown = useCallback(
       (e: React.KeyboardEvent, index: number) => {
         // Handle Enter key to select
-        if (e.key === 'Enter') {
+        if (e.key === "Enter") {
           e.preventDefault();
           onSelectCompany(companies[index], index);
           return;
@@ -35,7 +35,7 @@ export const CompanyList = React.memo<CompanyListProps>(
         // Delegate other key handling to parent
         onKeyDown(e);
       },
-      [companies, onSelectCompany, onKeyDown]
+      [companies, onSelectCompany, onKeyDown],
     );
 
     if (companies.length === 0) {
@@ -51,6 +51,10 @@ export const CompanyList = React.memo<CompanyListProps>(
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
+              className="animate-scaleIn"
+              style={{
+                animationDelay: `${(index % 12) * 0.05}s`,
+              }}
             >
               <CompanyCard
                 company={company}
@@ -65,8 +69,7 @@ export const CompanyList = React.memo<CompanyListProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
-CompanyList.displayName = 'CompanyList';
-
+CompanyList.displayName = "CompanyList";

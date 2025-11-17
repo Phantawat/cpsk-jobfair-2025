@@ -1,5 +1,5 @@
-import { parse } from 'csv-parse/sync';
-import { Company, RawCompanyData } from '@/types/company';
+import { parse } from "csv-parse/sync";
+import { Company, RawCompanyData } from "@/types/company";
 
 /**
  * Whitelist of allowed CSV columns mapping Thai names to English fields
@@ -7,43 +7,44 @@ import { Company, RawCompanyData } from '@/types/company';
  */
 const COLUMN_MAPPING: Record<string, string> = {
   // Thai column names -> English field names (for raw Thai CSV)
-  'ชื่อสถานประกอบการ': 'company_name',
-  'ลักษณะงานที่สถานประกอบการทำ': 'business_type',
-  'สถานประกอบการของท่านสะดวกเข้าร่วมกิจกรรมได้ตลอดทั้งวันหรือไม่': 'participation_time',
-  'ตำแหน่งงานที่ต้องการรับ': 'positions',
-  'ทักษะ/ความสามารถที่ต้องการ': 'skills',
-  'ท่านต้องการรับพนักงานกลุ่มใด': 'employment_type',
-  'หากท่านรับนิสิตฝึกงาน ต้องการรับนิสิตชั้นปีที่เท่าใดขึ้นไป': 'year_levels',
-  'logo': 'logo',
+  ชื่อสถานประกอบการ: "company_name",
+  ลักษณะงานที่สถานประกอบการทำ: "business_type",
+  สถานประกอบการของท่านสะดวกเข้าร่วมกิจกรรมได้ตลอดทั้งวันหรือไม่:
+    "participation_time",
+  ตำแหน่งงานที่ต้องการรับ: "positions",
+  "ทักษะ/ความสามารถที่ต้องการ": "skills",
+  ท่านต้องการรับพนักงานกลุ่มใด: "employment_type",
+  "หากท่านรับนิสิตฝึกงาน ต้องการรับนิสิตชั้นปีที่เท่าใดขึ้นไป": "year_levels",
+  logo: "logo",
 
   // English column names (for pre-transformed CSV)
-  'name': 'company_name',
-  'businessType': 'business_type',
-  'participationTime': 'participation_time',
-  'positions': 'positions',
-  'skills': 'skills',
-  'employmentTypes': 'employment_type',
-  'yearLevels': 'year_levels',
+  name: "company_name",
+  businessType: "business_type",
+  participationTime: "participation_time",
+  positions: "positions",
+  skills: "skills",
+  employmentTypes: "employment_type",
+  yearLevels: "year_levels",
 };
 
 // Columns to exclude (contact information and metadata)
 const EXCLUDED_PATTERNS = [
-  'email',
-  'phone',
-  'telephone',
-  'contact',
-  'address',
-  'location',
-  'ที่อยู่',
-  'อีเมล',
-  'เบอร์โทร',
-  'ติดต่อ',
-  'ชื่อ-นามสกุล',
-  'ผู้ประสานงาน',
-  'coordinator',
-  'timestamp',
-  'เวลา',
-  'วันที่',
+  "email",
+  "phone",
+  "telephone",
+  "contact",
+  "address",
+  "location",
+  "ที่อยู่",
+  "อีเมล",
+  "เบอร์โทร",
+  "ติดต่อ",
+  "ชื่อ-นามสกุล",
+  "ผู้ประสานงาน",
+  "coordinator",
+  "timestamp",
+  "เวลา",
+  "วันที่",
 ];
 
 /**
@@ -54,11 +55,47 @@ const EXCLUDED_PATTERNS = [
  */
 function normalizeTextItem(item: string): string {
   return item
-    .replace(/\n+/g, ' ') // Replace line breaks with spaces
-    .replace(/\s+/g, ' ') // Normalize multiple spaces
-    .replace(/^[-•\s]+/, '') // Remove leading dashes, bullets, spaces
-    .replace(/[-•\s]+$/, '') // Remove trailing dashes, bullets, spaces
+    .replace(/\n+/g, " ") // Replace line breaks with spaces
+    .replace(/\s+/g, " ") // Normalize multiple spaces
+    .replace(/^[-•\s]+/, "") // Remove leading dashes, bullets, spaces
+    .replace(/[-•\s]+$/, "") // Remove trailing dashes, bullets, spaces
     .trim();
+}
+
+/**
+ * Helper: Normalize employment types to English
+ */
+function normalizeEmploymentTypes(types: string[]): string[] {
+  return types.map((type) => {
+    const lower = type.toLowerCase();
+    // Check part-time BEFORE full-time because "ไม่เต็มเวลา" contains "เต็มเวลา"
+    if (
+      lower.includes("part-time") ||
+      lower.includes("ไม่เต็มเวลา") ||
+      lower.includes("part time")
+    ) {
+      return "Part-time";
+    } else if (
+      lower.includes("full-time") ||
+      lower.includes("เต็มเวลา") ||
+      lower.includes("full time")
+    ) {
+      return "Full-time";
+    } else if (
+      lower.includes("intern") ||
+      lower.includes("ฝึกงาน") ||
+      lower.includes("internship")
+    ) {
+      return "Internship";
+    } else if (
+      lower.includes("freelance") ||
+      lower.includes("อาชีพอิสระ") ||
+      lower.includes("freelancer")
+    ) {
+      return "Freelance";
+    }
+    return type; // Return original if no match
+  });
 }
 
 /**
@@ -69,7 +106,7 @@ function normalizeTextItem(item: string): string {
  * - Removes leading dashes/bullets
  */
 export function splitAndNormalize(value: string | undefined): string[] {
-  if (!value || typeof value !== 'string') return [];
+  if (!value || typeof value !== "string") return [];
 
   return (
     value
@@ -92,7 +129,7 @@ export function splitAndNormalize(value: string | undefined): string[] {
  * Handles formats like: "2; 3; 4", "Year 2; Year 3; Year 4", "2,3,4", etc.
  */
 export function parseYearLevels(value: string | undefined): number[] {
-  if (!value || typeof value !== 'string') return [];
+  if (!value || typeof value !== "string") return [];
 
   // Extract all numbers from the text
   const numbers = value.match(/\d+/g) || [];
@@ -115,7 +152,7 @@ export function parseYearLevels(value: string | undefined): number[] {
  * Returns Infinity if parsing fails (will appear at end of sorted list)
  */
 export function parseParticipationTime(value: string | undefined): number {
-  if (!value || typeof value !== 'string') return Infinity;
+  if (!value || typeof value !== "string") return Infinity;
 
   // Match first time token: HH:mm, H:mm, HH.mm, etc.
   const timeMatch = value.match(/(\d{1,2})[:.](\d{2})/);
@@ -144,19 +181,14 @@ export function createSearchText(
   name: string,
   businessType: string,
   positions: string[],
-  skills: string[]
+  skills: string[],
 ): string {
-  const parts = [
-    name,
-    businessType,
-    positions.join(' '),
-    skills.join(' '),
-  ];
+  const parts = [name, businessType, positions.join(" "), skills.join(" ")];
 
   return parts
-    .join(' ')
+    .join(" ")
     .toLowerCase()
-    .replace(/\s+/g, ' ') // Normalize multiple spaces to single space
+    .replace(/\s+/g, " ") // Normalize multiple spaces to single space
     .trim();
 }
 
@@ -166,7 +198,7 @@ export function createSearchText(
 function isExcludedColumn(columnName: string): boolean {
   const lowerName = columnName.toLowerCase();
   return EXCLUDED_PATTERNS.some((pattern) =>
-    lowerName.includes(pattern.toLowerCase())
+    lowerName.includes(pattern.toLowerCase()),
   );
 }
 
@@ -184,9 +216,9 @@ function transformRowToCompany(rawData: RawCompanyData): Company | null {
   }
 
   // Extract required fields
-  const name = (normalized.company_name || '').trim();
-  const businessType = (normalized.business_type || '').trim();
-  const participationTime = (normalized.participation_time || '').trim();
+  const name = (normalized.company_name || "").trim();
+  const businessType = (normalized.business_type || "").trim();
+  const participationTime = (normalized.participation_time || "").trim();
 
   // Validate required fields
   if (!name || !businessType) {
@@ -195,7 +227,9 @@ function transformRowToCompany(rawData: RawCompanyData): Company | null {
 
   const positions = splitAndNormalize(normalized.positions);
   const skills = splitAndNormalize(normalized.skills);
-  const employmentTypes = splitAndNormalize(normalized.employment_type);
+  const employmentTypes = normalizeEmploymentTypes(
+    splitAndNormalize(normalized.employment_type),
+  );
   const yearLevels = parseYearLevels(normalized.year_levels);
 
   const startMinutes = parseParticipationTime(participationTime);
@@ -210,7 +244,8 @@ function transformRowToCompany(rawData: RawCompanyData): Company | null {
     skills,
     employmentTypes,
     yearLevels,
-    logo: normalized.logo && normalized.logo.trim() ? normalized.logo.trim() : null,
+    logo:
+      normalized.logo && normalized.logo.trim() ? normalized.logo.trim() : null,
     startMinutes,
     searchText,
   };
@@ -222,8 +257,8 @@ function transformRowToCompany(rawData: RawCompanyData): Company | null {
  * @returns Array of parsed Company objects
  */
 export function parseCompaniesCsv(csvText: string): Company[] {
-  if (!csvText || typeof csvText !== 'string') {
-    console.warn('CSV text is empty or invalid');
+  if (!csvText || typeof csvText !== "string") {
+    console.warn("CSV text is empty or invalid");
     return [];
   }
 
@@ -246,11 +281,11 @@ export function parseCompaniesCsv(csvText: string): Company[] {
         (key) =>
           !COLUMN_MAPPING[key] &&
           !isExcludedColumn(key) &&
-          (row[key] || '') !== ''
+          (row[key] || "") !== "",
       );
 
       if (unexpectedKeys.length > 0 && index === 0) {
-        warnings.push(`Unexpected columns found: ${unexpectedKeys.join(', ')}`);
+        warnings.push(`Unexpected columns found: ${unexpectedKeys.join(", ")}`);
       }
 
       const company = transformRowToCompany(row);
@@ -260,13 +295,13 @@ export function parseCompaniesCsv(csvText: string): Company[] {
     });
 
     if (warnings.length > 0) {
-      console.warn('CSV parsing warnings:', warnings.join('\n'));
+      console.warn("CSV parsing warnings:", warnings.join("\n"));
     }
 
     console.log(`Parsed ${companies.length} companies from CSV`);
     return companies;
   } catch (error) {
-    console.error('Error parsing CSV:', error);
+    console.error("Error parsing CSV:", error);
     return [];
   }
 }
