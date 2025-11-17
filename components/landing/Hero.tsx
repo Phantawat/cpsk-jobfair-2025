@@ -147,7 +147,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Primary CTA Button with improved styling */}
-        <div className="animate-fadeInUp" style={{ animationDelay: "0.3s" }}>
+        <div className="animate-fadeInUp -mt-6" style={{ animationDelay: "0.3s" }}>
           <Link href="/companies">
             <MagneticButton
               magneticStrength={0.3}
@@ -170,10 +170,10 @@ export const Hero: React.FC = () => {
             </MagneticButton>
           </Link>
         </div>
-
-        {/* Scroll Indicator with gentle bounce */}
+      </div>
+       {/* Scroll Indicator with gentle bounce */}
         <div
-          className="absolute bottom-20 sm:bottom-16 left-1/2 transform -translate-x-1/2 animate-fadeInUp"
+          className="absolute -bottom-10 sm:bottom-6 left-1/2 transform -translate-x-1/2 animate-fadeInUp"
           style={{ animationDelay: "0.4s" }}
         >
           <div className="animate-bounceGentle text-white/60 cursor-pointer hover:text-white/80 transition-colors">
@@ -192,7 +192,6 @@ export const Hero: React.FC = () => {
             </svg>
           </div>
         </div>
-      </div>
     </section>
   );
 };
