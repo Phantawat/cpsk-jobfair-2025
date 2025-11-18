@@ -15,6 +15,16 @@ export const CompanyCard = React.memo<CompanyCardProps>(
   ({ company, isActive, tabIndex, onClick, onKeyDown, staggerIndex = 0 }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
+    // Auto-flip back after 3 seconds
+    React.useEffect(() => {
+      if (isFlipped) {
+        const timer = setTimeout(() => {
+          setIsFlipped(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }, [isFlipped]);
+
     // Get initials for logo placeholder
     const getInitials = (name: string) => {
       return name
@@ -214,28 +224,6 @@ export const CompanyCard = React.memo<CompanyCardProps>(
                   )}
                 </div>
               </div>
-
-              {/* Flip Back Button */}
-              <button
-                className="flip-button w-full mt-4 py-1.5 text-xs text-ku-fresh hover:text-white font-medium flex items-center justify-center gap-1 transition-colors border-t border-ku-fresh/30 pt-3"
-                aria-label="Show company info"
-                onClick={handleFlipClick}
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-                  />
-                </svg>
-                Back
-              </button>
             </div>
           </div>
         </div>

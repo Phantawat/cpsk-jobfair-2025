@@ -578,8 +578,25 @@
     -webkit-backface-visibility: hidden;
   }
 
+  .flip-card-front {
+    z-index: 2;
+    pointer-events: auto;
+  }
+
   .flip-card-back {
     transform: rotateY(180deg);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .flip-card.flipped .flip-card-front {
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .flip-card.flipped .flip-card-back {
+    z-index: 2;
+    pointer-events: auto;
   }
 
   /* Modal 3D Transform Utilities */
