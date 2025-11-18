@@ -47,7 +47,7 @@ module.exports = {
         "ku-fresh-dark": "#7A8A1F", // Darker fresh for hover states
       },
       fontFamily: {
-        sans: ["system-ui", "sans-serif"],
+        sans: ["Prompt", "system-ui", "sans-serif"],
       },
       spacing: {
         128: "32rem",
