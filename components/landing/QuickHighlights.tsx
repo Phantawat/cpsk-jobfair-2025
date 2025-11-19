@@ -95,7 +95,7 @@ const QuickHighlights = React.memo<{ companies: Company[] }>(
                         <Link
                           key={`${company.name}-${index}`}
                           href={`/companies?company=${encodeURIComponent(company.name)}`}
-                          className="group flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 text-center hover-lift transition-transform duration-300 focus-shadow rounded-full outline-none focus:outline-offset-2 focus:outline-ku-pine"
+                          className="group flex-shrink-0 w-20 h-30 sm:w-24 text-center hover-lift transition-transform duration-300 focus-shadow outline-none focus:outline-offset-2 focus:outline-ku-pine"
                         >
                           {/* Company Logo Circle */}
                           <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full bg-gradient-to-br from-ku-pine to-ku-fresh flex items-center justify-center mb-2 sm:mb-3 shadow-lg group-hover:shadow-xl transition-shadow overflow-hidden">
