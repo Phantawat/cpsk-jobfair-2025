@@ -41,10 +41,13 @@ export function filterCompanies(
     }
 
     // Year levels filter (OR within year levels)
-    // If user selects Year 2, show companies that accept Year 2 or higher (2, 3, 4)
+    // If user selects Year 1, show only companies that accept Year 1
     if (filters.selectedYearLevels.length > 0) {
-      const minSelectedYear = Math.min(...filters.selectedYearLevels);
-      if (!company.yearLevels.some((year) => year >= minSelectedYear)) {
+      if (
+        !company.yearLevels.some((year) =>
+          filters.selectedYearLevels.includes(year),
+        )
+      ) {
         return false;
       }
     }

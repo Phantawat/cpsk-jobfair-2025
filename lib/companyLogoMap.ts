@@ -1,6 +1,6 @@
 // Map company names to their logo filenames
 export const companyLogoMap: Record<string, string> = {
-  'บริษัท คอลเลคทีฟ วิสดอม จำกัด': 'collective-wisdom',
+  'LINE MAN Wongnai': 'lineman-wongnai',
   'FairPlay Studios': 'fairplay-studios',
   'บริษัท ซิลิคอน คราฟท์ เทคโนโลยี จำกัด (มหาชน)': 'silicon-craft',
   'บริษัท อินโนเวทีฟ เอ็กซ์ตรีมิสต์ จำกัด': 'inox',

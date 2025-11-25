@@ -3,7 +3,6 @@ const https = require('https');
 const path = require('path');
 
 const companies = [
-  { name: 'บริษัท คอลเลคทีฟ วิสดอม จำกัด', filename: 'collective-wisdom', domain: 'collectivewisdom.co.th' },
   { name: 'FairPlay Studios', filename: 'fairplay-studios', domain: 'fairplaystudios.com' },
   { name: 'บริษัท ซิลิคอน คราฟท์ เทคโนโลยี จำกัด (มหาชน)', filename: 'silicon-craft', domain: 'sic.co.th' },
   { name: 'บริษัท อินโนเวทีฟ เอ็กซ์ตรีมิสต์ จำกัด', filename: 'innovative-extremist', domain: 'innovativeextremist.com' },
@@ -41,6 +40,7 @@ const companies = [
   { name: 'Nextwave (Thailand) Co., Ltd.', filename: 'nextwave', domain: 'nextwave.co.th' },
   { name: 'บริษัท สามารถเทลคอม จำกัด (มหาชน)', filename: 'samart-telcom', domain: 'samart.co.th' },
   { name: 'บริษัท ทรูเวฟ (ประเทศไทย) จำกัด', filename: 'throughwave', domain: 'truewave.co.th' },
+  { name: 'LINE MAN Wongnai', filename: 'lineman-wongnai', domain: 'lmwn.com' },
 ];
 
 const logosDir = path.join(__dirname, '../public/logos');

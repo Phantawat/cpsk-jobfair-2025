@@ -2,7 +2,7 @@
 
 Upload company logos here with the following filenames (all lowercase, use hyphens for spaces):
 
-1. `collective-wisdom.png` - บริษัท คอลเลคทีฟ วิสดอม จำกัด
+1. `lineman-wongnai.png` - LINE MAN Wongnai
 2. `fairplay-studios.png` - FairPlay Studios
 3. `silicon-craft.png` - บริษัท ซิลิคอน คราฟท์ เทคโนโลยี จำกัด (มหาชน)
 4. `innovative-extremist.png` - บริษัท อินโนเวทีฟ เอ็กซ์ตรีมิสต์ จำกัด
